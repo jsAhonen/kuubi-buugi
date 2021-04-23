@@ -1,65 +1,71 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { Form, Formik } from "formik";
+import Head from "next/head";
+import * as Yup from "yup";
+import { Box, Flex, SimpleGrid, Text } from "@chakra-ui/layout";
+import { Textarea } from "@chakra-ui/textarea";
+import Field from "../components/forms/Field";
+import Content from "../components/layout/Content";
+import SubmitButton from "../components/forms/SubmitButton";
+import { StylesProvider } from "@chakra-ui/system";
+import Title from "../components/typography/Title";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <Content>
       <Head>
-        <title>Create Next App</title>
+        <title>Kuubi Buugi</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <Flex direction="column">
+        <Title>
+          Kuubi{" "}
+          <strong>
+            Super <br /> Elite
+          </strong>{" "}
+          Dev Team
+        </Title>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Formik
+          initialValues={{
+            name: "",
+            email: "",
+            phone: "",
+            avatar: "",
+            description: "",
+          }}
+          validationSchema={Yup.object().shape({
+            name: Yup.string().required("Vaadittu kenttä"),
+            email: Yup.string()
+              .email("That's not an email, right?")
+              .required("You need to give an email."),
+            phone: Yup.string().required("Vaadittu kenttä"),
+            description: Yup.string().required("Vaadittu kenttä"),
+          })}
+          onSubmit={(values) => {
+            console.log({ values });
+          }}
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+          <Form>
+            <Box d="flex" justifyContent="space-between">
+              <Box d={"flex"} flexDirection="column">
+                <Field name="name" label="Name*" />
+                <Field name="email" label="Email*" />
+                <Field name="phone" label="Phone*" />
+              </Box>
+            </Box>
+            <Box>
+              <Field
+                as={Textarea}
+                variant="outline"
+                rows={8}
+                name="description"
+              />
+            </Box>
+            <SubmitButton />
+          </Form>
+        </Formik>
+      </Flex>
+    </Content>
+  );
 }
