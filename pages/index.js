@@ -56,7 +56,7 @@ export default function Home() {
                 .required("You need to give an email."),
               phone: Yup.string().required("Vaadittu kenttä"),
             })}
-            onSubmit={(values) => {
+            onSubmit={(values, { resetForm }) => {
               if (termsAgreement) {
                 toast({
                   title: "Thank you very much!",
@@ -65,6 +65,7 @@ export default function Home() {
                   duration: 9000,
                   isClosable: true,
                 });
+                resetForm();
               } else {
                 toast({
                   title: "Error!",
