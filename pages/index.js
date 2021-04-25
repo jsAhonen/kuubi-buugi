@@ -43,7 +43,6 @@ export default function Home() {
               .email("That's not an email, right?")
               .required("You need to give an email."),
             phone: Yup.string().required("Vaadittu kenttä"),
-            description: Yup.string().required("Vaadittu kenttä"),
           })}
           onSubmit={(values) => {
             console.log({ values });
