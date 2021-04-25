@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^1.5.2",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
+    "@fontsource/open-sans": "^4.2.2",
     "formik": "^2.2.6",
     "framer-motion": "^4.1.8",
     "next": "10.1.3",

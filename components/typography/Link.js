@@ -4,7 +4,7 @@ import theme from "../../theme";
 
 export default function Link({ children, ...props }) {
   return (
-    <ChakraLink color={theme.colors.primary} {...props}>
+    <ChakraLink color="primary" {...props}>
       {children}
     </ChakraLink>
   );

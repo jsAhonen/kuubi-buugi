@@ -8,7 +8,7 @@ import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 
 export default function Field(props) {
   const [{ value }, { error, touched }] = useField(props.name);
-  const themeColor = touched && error ? "#d42222" : theme.colors.primary;
+  const themeColor = touched && error ? "error" : "primary";
   return (
     <FormControl margin="8px 0">
       <InputGroup alignItems="center">
@@ -17,7 +17,7 @@ export default function Field(props) {
           margin="8px 0"
           variant="flushed"
           borderColor={themeColor}
-          errorBorderColor="#d42222"
+          errorBorderColor="error"
           placeholder=""
           sx={{
             "&:focus": {
@@ -38,13 +38,13 @@ export default function Field(props) {
           {...props}
         />
         <FormLabel as="span">{props.label}</FormLabel>
-        {touched && (
+        {touched && !props.noIcon && (
           <InputRightElement
             children={
               error ? (
-                <CloseIcon color="#d42222" />
+                <CloseIcon color="error" />
               ) : (
-                <CheckIcon color={theme.colors.primary} />
+                <CheckIcon color="primary" />
               )
             }
           />

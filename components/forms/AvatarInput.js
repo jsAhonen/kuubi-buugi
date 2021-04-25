@@ -54,7 +54,7 @@ function AvatarOption({ src, ...props }) {
         border={`6px solid transparent`}
         borderRadius={`4px`}
         _checked={{
-          borderColor: `${theme.colors.primary}`,
+          borderColor: "primary",
         }}
       />
     </Box>

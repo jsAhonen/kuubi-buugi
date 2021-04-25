@@ -15,7 +15,7 @@ export default function Checkbox({ children, checked = false, onClick }) {
         mr="8px"
         onClick={onClick}
       >
-        {checked && <CheckIcon color={theme.colors.primary} />}
+        {checked && <CheckIcon color="primary" />}
       </Flex>
       {children}
     </Flex>

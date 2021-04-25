@@ -5,8 +5,8 @@ export default function Button({ children = "Submit", variant, ...props }) {
   return (
     <ChakraButton
       variant={variant || "outline"}
-      borderColor="#30adb4"
-      color="#30adb4"
+      borderColor="primary"
+      color="primary"
       borderRadius="unset"
       padding={variant !== "link" && "12px 24px"}
       alignItems="baseline"

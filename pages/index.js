@@ -17,7 +17,7 @@ import Link from "../components/typography/Link";
 import Checkbox from "../components/inputs/Checkbox";
 import { useDisclosure } from "@chakra-ui/hooks";
 import TermsAndConditions from "../components/forms/TermsAndConditions";
-import Polygon from "../components/layout/Background";
+import Background from "../components/layout/Background";
 import { useToast } from "@chakra-ui/toast";
 
 export default function Home() {
@@ -31,7 +31,7 @@ export default function Home() {
         <title>Kuubi Buugi</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Polygon color={theme.colors.beige}>
+      <Background>
         <Content>
           <Title>
             Kuubi{" "}
@@ -58,7 +58,7 @@ export default function Home() {
                 .matches(/\+?[0-9]{7,15}/)
                 .required("Vaadittu kenttä"),
             })}
-            onSubmit={(values, { resetForm }) => {
+            onSubmit={(_, { resetForm }) => {
               if (termsAgreement) {
                 toast({
                   title: "Thank you very much!",
@@ -109,6 +109,7 @@ export default function Home() {
                   variant="outline"
                   rows={8}
                   name="description"
+                  noIcon
                 />
                 <Checkbox
                   checked={termsAgreement}
@@ -127,7 +128,7 @@ export default function Home() {
             </Form>
           </Formik>
         </Content>
-      </Polygon>
+      </Background>
     </>
   );
 }
