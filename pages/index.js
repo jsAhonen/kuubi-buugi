@@ -18,10 +18,12 @@ import Checkbox from "../components/inputs/Checkbox";
 import { useDisclosure } from "@chakra-ui/hooks";
 import TermsAndConditions from "../components/forms/TermsAndConditions";
 import Polygon from "../components/layout/Background";
+import { useToast } from "@chakra-ui/toast";
 
 export default function Home() {
   const [termsAgreement, setTermsAgreement] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
 
   return (
     <>
@@ -56,9 +58,22 @@ export default function Home() {
             })}
             onSubmit={(values) => {
               if (termsAgreement) {
-                alert(values.toString());
+                toast({
+                  title: "Thank you very much!",
+                  description: "Your information has been submitted!.",
+                  status: "success",
+                  duration: 9000,
+                  isClosable: true,
+                });
               } else {
-                alert("You must agree!");
+                toast({
+                  title: "Error!",
+                  description:
+                    "Please check the box to agree to the terms and conditions.",
+                  status: "error",
+                  duration: 9000,
+                  isClosable: true,
+                });
               }
             }}
           >
