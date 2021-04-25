@@ -1,7 +1,6 @@
 import { Field as FormikField, useField } from "formik";
 import { Input } from "@chakra-ui/input";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
-import theme from "../../theme";
 import { InputGroup } from "@chakra-ui/input";
 import { InputRightElement } from "@chakra-ui/input";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";

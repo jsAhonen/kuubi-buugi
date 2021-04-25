@@ -1,7 +1,6 @@
 import { CheckIcon } from "@chakra-ui/icons";
-import { Box, Flex } from "@chakra-ui/layout";
+import { Flex } from "@chakra-ui/layout";
 import React from "react";
-import theme from "../../theme";
 
 export default function Checkbox({ children, checked = false, onClick }) {
   return (

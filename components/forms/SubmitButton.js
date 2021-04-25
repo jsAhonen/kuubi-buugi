@@ -1,6 +1,5 @@
 import { Input } from "@chakra-ui/input";
 import React from "react";
-import theme from "../../theme";
 
 export default function SubmitButton({ label = "Submit", ...props }) {
   return (

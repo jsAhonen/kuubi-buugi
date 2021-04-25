@@ -7,7 +7,6 @@ import { useRadio } from "@chakra-ui/radio";
 import { useRadioGroup } from "@chakra-ui/radio";
 import { useField } from "formik";
 import React from "react";
-import theme from "../../theme";
 
 export default function AvatarInput({ name, options }) {
   const [{ value }, _, { setValue }] = useField(name);
