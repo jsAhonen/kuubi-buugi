@@ -54,7 +54,9 @@ export default function Home() {
               email: Yup.string()
                 .email("That's not an email, right?")
                 .required("You need to give an email."),
-              phone: Yup.string().required("Vaadittu kenttä"),
+              phone: Yup.string()
+                .matches(/\+?[0-9]{7,15}/)
+                .required("Vaadittu kenttä"),
             })}
             onSubmit={(values, { resetForm }) => {
               if (termsAgreement) {
