@@ -8,16 +8,19 @@ import Content from "../components/layout/Content";
 import SubmitButton from "../components/forms/SubmitButton";
 import { StylesProvider } from "@chakra-ui/system";
 import Title from "../components/typography/Title";
+import ImageInput from "../components/forms/AvatarInput";
+import { Spacer } from "@chakra-ui/layout";
+import avatarData from "../avatar-data";
 
 export default function Home() {
   return (
-    <Content>
+    <>
       <Head>
         <title>Kuubi Buugi</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Flex direction="column">
+      <Content>
         <Title>
           Kuubi{" "}
           <strong>
@@ -31,7 +34,7 @@ export default function Home() {
             name: "",
             email: "",
             phone: "",
-            avatar: "",
+            avatar: avatarData[0],
             description: "",
           }}
           validationSchema={Yup.object().shape({
@@ -47,13 +50,28 @@ export default function Home() {
           }}
         >
           <Form>
-            <Box d="flex" justifyContent="space-between">
-              <Box d={"flex"} flexDirection="column">
+            <Flex
+              justify="space-between"
+              direction={{ base: "column", md: "row" }}
+            >
+              <Flex direction="column" flex={1} mr="16px">
+                <Flex justify="space-between">
+                  <Text fontSize="xl" fontWeight="bold">
+                    Create profile
+                  </Text>
+                  <Text color="gray">* required</Text>
+                </Flex>
                 <Field name="name" label="Name*" />
                 <Field name="email" label="Email*" />
                 <Field name="phone" label="Phone*" />
+              </Flex>
+              <Box flex={1}>
+                <Text fontSize="xl" fontWeight="bold">
+                  Choose Your Avatar
+                </Text>
+                <ImageInput name="avatar" options={avatarData} />
               </Box>
-            </Box>
+            </Flex>
             <Box>
               <Field
                 as={Textarea}
@@ -65,7 +83,7 @@ export default function Home() {
             <SubmitButton />
           </Form>
         </Formik>
-      </Flex>
-    </Content>
+      </Content>
+    </>
   );
 }
