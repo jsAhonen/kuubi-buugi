@@ -11,8 +11,17 @@ import Title from "../components/typography/Title";
 import ImageInput from "../components/forms/AvatarInput";
 import { Spacer } from "@chakra-ui/layout";
 import avatarData from "../avatar-data";
+import { useState } from "react";
+import theme from "../theme";
+import Link from "../components/typography/Link";
+import Checkbox from "../components/inputs/Checkbox";
+import { useDisclosure } from "@chakra-ui/hooks";
+import TermsAndConditions from "../components/forms/TermsAndConditions";
 
 export default function Home() {
+  const [termsAgreement, setTermsAgreement] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Head>
@@ -45,7 +54,11 @@ export default function Home() {
             phone: Yup.string().required("Vaadittu kenttä"),
           })}
           onSubmit={(values) => {
-            console.log({ values });
+            if (termsAgreement) {
+              alert(values.toString());
+            } else {
+              alert("You must agree!");
+            }
           }}
         >
           <Form>
@@ -78,7 +91,18 @@ export default function Home() {
                 rows={8}
                 name="description"
               />
+              <Checkbox
+                checked={termsAgreement}
+                onClick={() => setTermsAgreement(!termsAgreement)}
+              >
+                <Text>
+                  I agree to <Link onClick={onOpen}>terms and conditions</Link>
+                  .
+                  <TermsAndConditions onClose={onClose} isOpen={isOpen} />
+                </Text>
+              </Checkbox>
             </Box>
+
             <SubmitButton />
           </Form>
         </Formik>
